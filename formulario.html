@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<title>Formularios</title>
+<link rel="stylesheet" href="estilo.css">
+<script>
+function iniciar(){
+    document.informacion.addEventListener("invalid", validacion, true);
+    document.getElementById("enviar").addEventListener("click", enviar, false);
+    document.informacion.addEventListener("input", controlar, false);
+}
+function validacion(e){
+    var elemento=e.target;
+    elemento.style.background='#FF5733';
+}
+function enviar(){
+    var n=document.getElementById("nombre");
+    var a=document.getElementById("apellidos");
+    var ce=document.getElementById("correo");
+    var f=document.getElementById("fecha");
+    var e=document.getElementById("edad");
+    var d=document.getElementById("dir");
+    var l=document.getElementById("loc");
+    var p=document.getElementById("prov");
+    var t=document.getElementById("telefono");
+    var o=document.getElementById("observaciones");
+    var valido=document.informacion.checkValidity();
+    if(valido){
+        document.informacion.submit();
+    }
+    if(n.validity.patternMismatch){
+        alert('El nombre debe tener mínimo de 3 caracteres');
+    }
+    if(a.validity.patternMismatch){
+        alert('Los apellidos deben tener mínimo de 7 caracteres');
+    }
+    if(t.validity.patternMismatch){
+        alert('El número de telefono no coincide')
+    }
+    if(n.validity.valueMissing || 
+        a.validity.valueMissing || 
+        ce.validity.valueMissing || 
+        f.validity.valueMissing || 
+        e.validity.valueMissing || 
+        d.validity.valueMissing|| 
+        l.validity.valueMissing || 
+        p.validity.valueMissing || 
+        t.validity.valueMissing || 
+        o.validity.valueMissing){
+            alert('HAY CAMPOS OBLIGATORIOS VACIOS')
+        }
+}
+function controlar(e){
+    var elemento=e.target;
+    if(elemento.validity.valid){
+    elemento.style.background='#FFFFFF';
+    }else{
+    elemento.style.background='#FF5733';
+    }
+}
+    window.addEventListener("load", iniciar, false);
+</script>
+</head>
+
+<body>
+    <header>
+        <h1>Validación de formulario</h1>
+    </header>
+
+    <div id="body">
+<section>
+<form name="informacion" method="get">
+    <p>Nombre:</p>
+    <input  name="nombre" id="nombre" pattern="[A-Za-z]{3,}" maxlength="20" autofocus placeholder="escriba su nombre" required>
+    <p>Apellidos:</p>
+    <input name="apellidos" id="apellidos" pattern="[A-Za-z]{7,}" maxlength="50" placeholder="escriba sus apellidos" required>
+    <p>Correo Electrónico:</p>
+    <input type="email" name="correo" id="correo" required placeholder="escriba su correo electronico" required>
+    <p>Fecha de Nacimiento:</p>
+    <input type="date" name="fecha" id="fecha" required>
+    <p>Edad:</p>
+    <input type="number" name="edad" id="edad" min="0" max="90" required>
+    <p>Dirección:</p>
+    <input type="text" name="dir" id="dir" placeholder="escriba su dirección" required>
+    <p>Localidad:</p>
+    <input type="text" name="loc" id="loc" placeholder="escriba su localidad" required>
+    <p>Provincia:</p>
+    <datalist id="prov">
+        <option value="Huelva"></option>
+        <option value="Sevilla"></option>
+        <option value="Cadiz"></option>
+        <option value="Córdoba"></option>
+        <option value="Málaga"></option>
+        <option value="Jaén"></option>
+        <option value="Almería"></option>
+        <option value="Granada"></option>
+    </datalist>
+    <input type="text" name="provincia" id="prov" list="prov" required>
+    <p>Teléfono:</p>
+    <input type="tel" name="telefono" id="telefono" pattern="(\(6|9)*([0-9]*){8}" placeholder="escriba su telefono" required>
+    <p>Color favorito:</p>
+    <input type="color" name="micolor" id="micolor">
+    <p>Observaciones:</p>
+    <textarea id="observaciones" rows="10" cols="40" placeholder="escriba las observaciones" required></textarea>
+    <br>
+<input type="button" id="enviar" value="Enviar">
+</form>
+</section>
+    </div>
+</body>
+</html>

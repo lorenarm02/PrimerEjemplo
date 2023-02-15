@@ -1,0 +1,41 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    font-family: MiNuevaFuente, verdana, sans-serif;
+}
+
+body { 
+	font: 100% bold, sans-serif; 
+	background-image: url(fondo.jpg) ;
+	margin: 0;
+}
+#body{
+	width: 1024px;
+	margin: 0 auto;
+	background: #8f70d6 ;
+}
+
+header{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+    justify-content: center;
+	background: #bd37d856 ;
+    color: #6737d8;
+}
+
+p{
+    color: #10caab;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'MiNuevaFuente';
+    src: url('font.ttf');
+}
+input{
+    color: #6737d8;
+    font-size: 17px;
+}
